@@ -11,10 +11,8 @@ This is a comprehensive e-commerce backend API built with Node.js, Express, and 
 - **Shopping Cart**: Add, remove, and manage cart items
 - **Order Management**: Complete order lifecycle with status tracking
 - **Category Management**: Hierarchical categories with audience targeting
-- **Reviews & Testimonials**: Product reviews with admin moderation
+- **Testimonials**: Product reviews with admin moderation
 - **FAQ System**: Manage frequently asked questions
-- **Contact System**: Handle customer inquiries and complaints
-- **Wishlist**: Save favorite products
 - **Admin Panel**: Comprehensive admin controls and analytics
 
 ## Tech Stack
