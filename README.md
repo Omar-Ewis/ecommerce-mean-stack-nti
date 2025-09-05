@@ -14,7 +14,7 @@ Includes dynamic category tree, shopping cart, order tracking, user authenticati
   - Role-based authentication (User/Admin)
   - Secure password hashing
   - Responsive dashboard UI
-  - Clean folder structure (backend + frontend in one repo)
+  - Clean folder structure
 
 ---
 
