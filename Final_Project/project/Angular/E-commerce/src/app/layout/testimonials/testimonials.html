@@ -1,0 +1,25 @@
+<div class="testimonials-page">
+  <h2 class="testimonials-title">💬 What our customers say</h2>
+
+  @if (isLoading) {
+    <p class="loading">Loading testimonials...</p>
+  } @else {
+    <div class="testimonials-list">
+      @for (t of testimonials; track t._id) {
+        <div class="testimonial-card">
+          <div class="testimonial-icon">🧑‍💼</div>
+          <h3>{{ t.name }}</h3>
+          <p>"{{ t.message }}"</p>
+        </div>
+      }
+    </div>
+
+    <hr style="margin: 2rem 0;" />
+    <h3 class="form-title">📝 Share your experience</h3>
+    <form [formGroup]="form" (ngSubmit)="submit()" class="testimonial-form">
+      <input type="text" formControlName="name" placeholder="Your name" />
+      <textarea formControlName="message" placeholder="Write your feedback..." rows="4"></textarea>
+      <button type="submit" [disabled]="form.invalid">Submit</button>
+    </form>
+  }
+</div>

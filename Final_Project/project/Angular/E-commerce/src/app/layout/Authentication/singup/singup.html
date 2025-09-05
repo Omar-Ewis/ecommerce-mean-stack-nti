@@ -1,0 +1,155 @@
+<div class="login-page">
+  <!-- Background Elements -->
+  <div class="background-elements">
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+    <div class="bg-pattern"></div>
+  </div>
+
+  <!-- Signup Container -->
+  <div class="login-container">
+    <!-- Left Side - Branding -->
+    <div class="login-left">
+      <div class="branding-section">
+        <div class="login-logo">
+          <span class="logo-icon">🛒</span>
+          <div class="logo-glow"></div>
+        </div>
+        <h1 class="login-title">Join Us!</h1>
+        <p class="login-subtitle">Create your account and start shopping with exclusive benefits</p>
+
+        <!-- Benefits -->
+        <div class="benefits-list">
+          <div class="benefit-item">
+            <span class="benefit-icon">🚚</span>
+            <span class="benefit-text">Free Shipping on orders over $50</span>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-icon">🔒</span>
+            <span class="benefit-text">100% Secure Payment</span>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-icon">🎁</span>
+            <span class="benefit-text">Exclusive Member Offers</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side - Signup Form -->
+    <div class="login-right">
+      <div class="form-container">
+        <div class="form-header">
+          <h2 class="form-title">Create Account</h2>
+          <p class="form-subtitle">Fill in your information to register</p>
+        </div>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="login-form">
+          <!-- Full Name -->
+          <div class="form-group">
+            <label for="name" class="form-label">
+              <span class="label-icon">👤</span>
+              Full Name
+            </label>
+            <div class="input-wrapper">
+              <input
+                type="text"
+                id="name"
+                formControlName="name"
+                class="form-input"
+                placeholder="Enter your full name"
+                required
+              />
+              <div class="input-border"></div>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email" class="form-label">
+              <span class="label-icon">📧</span>
+              Email Address
+            </label>
+            <div class="input-wrapper">
+              <input
+                type="email"
+                id="email"
+                formControlName="email"
+                class="form-input"
+                placeholder="Enter your email"
+                required
+              />
+              <div class="input-border"></div>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="form-group">
+            <label for="phone" class="form-label">
+              <span class="label-icon">📱</span>
+              Phone Number
+            </label>
+            <div class="input-wrapper">
+              <input
+                type="text"
+                id="phone"
+                formControlName="phone"
+                class="form-input"
+                placeholder="Enter your phone number"
+                required
+              />
+              <div class="input-border"></div>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label for="password" class="form-label">
+              <span class="label-icon">🔒</span>
+              Password
+            </label>
+            <div class="input-wrapper">
+              <input
+                type="password"
+                id="password"
+                formControlName="password"
+                class="form-input"
+                placeholder="Enter your password"
+                required
+              />
+              <div class="input-border"></div>
+            </div>
+          </div>
+
+          <!-- Error Message -->
+          <div class="error-message" *ngIf="message">
+            <div class="error-icon">⚠️</div>
+            <span class="error-text">{{ message }}</span>
+          </div>
+
+          <!-- Signup Button -->
+          <button type="submit" class="login-btn" [disabled]="registerForm.invalid">
+            <span class="btn-text">Sign Up</span>
+            <span class="btn-arrow">→</span>
+            <div class="btn-shine"></div>
+          </button>
+
+          <!-- Form Footer -->
+          <div class="form-footer">
+            <span class="signup-text">Already have an account?</span>
+            <a routerLink="/login" class="signup-link">Sign In</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decorative Elements -->
+  <div class="decorative-elements">
+    <div class="floating-icon icon-1">🛍️</div>
+    <div class="floating-icon icon-2">💳</div>
+    <div class="floating-icon icon-3">⭐</div>
+    <div class="floating-icon icon-4">🎯</div>
+  </div>
+</div>

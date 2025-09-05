@@ -1,0 +1,69 @@
+<div class="order-details-page" *ngIf="order">
+  <div class="order-details-container">
+
+    <!-- Header -->
+
+
+    <!-- Order Info Card -->
+    <div class="info-card">
+      <h3 class="section-title">📋 Order Information</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Order Date</span>
+          <span class="info-value">{{ order.createdAt | date: 'medium' }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Status</span>
+          <span class="info-value status" [ngClass]="order.status">{{ order.status }}</span>
+        </div>
+        <div class="info-item full-width">
+          <span class="info-label">Shipping Address</span>
+          <span class="info-value address">{{ order.shippingAddress.city }}, {{ order.shippingAddress.street }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Items Card -->
+    <div class="items-card">
+      <h3 class="section-title">🛒 Order Items</h3>
+      <div class="order-items">
+        <div *ngFor="let item of order.orderItems" class="order-item">
+          <div class="item-image">
+            <img [src]="staticURL +'/'+ item.imageURL" alt="{{ item.name }}" class="product-img" />
+          </div>
+          <div class="item-details">
+            <h4 class="item-name">{{ item.name }}</h4>
+            <div class="item-info">
+              <span class="item-price">{{ item.price }} EGP</span>
+              <span class="item-quantity">Qty: {{ item.quantity }}</span>
+            </div>
+          </div>
+          <div class="item-total">
+            <span class="total-label">Total</span>
+            <span class="total-value">{{ item.price * item.quantity }} EGP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Summary Card -->
+    <div class="summary-card">
+      <h3 class="section-title">💰 Order Summary</h3>
+      <div class="summary-details">
+        <div class="summary-row">
+          <span class="summary-label">Subtotal</span>
+          <span class="summary-value">{{ order.subtotal }} EGP</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Shipping Fee</span>
+          <span class="summary-value">{{ order.shippingFee }} EGP</span>
+        </div>
+        <div class="summary-row total-row">
+          <span class="summary-label">Total Amount</span>
+          <span class="summary-value total">{{ order.total }} EGP</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

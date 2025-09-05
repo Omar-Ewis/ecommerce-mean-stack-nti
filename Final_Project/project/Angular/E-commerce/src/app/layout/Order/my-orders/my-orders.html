@@ -1,0 +1,71 @@
+<div class="orders-page">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h2 class="page-title">🧾 My Orders</h2>
+    <p class="page-subtitle">Track and manage your orders</p>
+  </div>
+
+  @if (isLoading) {
+    <!-- Loading State -->
+    <div class="loading-container">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">Loading your orders...</p>
+    </div>
+  } @else {
+    @if (orders.length === 0) {
+      <!-- Empty State -->
+      <div class="empty-state">
+        <div class="empty-icon">📦</div>
+        <h3 class="empty-title">No Orders Yet</h3>
+        <p class="empty-message">😔 You haven't placed any orders yet. Start shopping to see your orders here!</p>
+        <a routerLink="/products" class="btn-start-shopping">
+          🛒 Start Shopping
+        </a>
+      </div>
+    } @else {
+      <!-- Orders List -->
+      <div class="orders-container">
+        <div class="orders-list">
+          @for (order of orders; track order._id) {
+            <div class="order-card">
+
+              <!-- Order Header -->
+              <div class="order-header">
+                <h3 class="order-id">📦 Order #{{ order._id }}</h3>
+                <div class="status-badge" [ngClass]="order.status">
+                  {{ order.status }}
+                </div>
+              </div>
+
+              <!-- Order Info -->
+              <div class="order-info">
+                <div class="info-item">
+                  <span class="info-label">Order Date</span>
+                  <span class="info-value">{{ order.createdAt | date:'medium' }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Total Amount</span>
+                  <span class="info-value total">{{ order.total }} EGP</span>
+                </div>
+              </div>
+
+              <!-- Order Actions -->
+              <div class="order-actions">
+                @if (order.status === 'pending') {
+                  <button (click)="cancel(order._id)" class="cancel-btn">
+                    ❌ Cancel Order
+                  </button>
+                }
+                <a [routerLink]="['/order-details', order._id]" class="btn-view-details">
+                  👁️ View Details
+                </a>
+              </div>
+
+            </div>
+          }
+        </div>
+      </div>
+    }
+  }
+</div>

@@ -1,0 +1,120 @@
+.categories-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+}
+
+.categories-container h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.categories-container h2::before {
+  content: "📁";
+  font-size: 1.6rem;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.category-item {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.category-header strong {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.category-actions button {
+  margin-left: 0.5rem;
+  margin-top: 0.3rem;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background-color 0.2s ease;
+}
+
+.category-actions button:hover {
+  opacity: 0.9;
+}
+
+.category-actions .activate-btn {
+  background-color: #ffc107;
+  color: black;
+}
+
+.category-actions .delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.category-actions .edit-btn {
+  background-color: #0d6efd;
+  color: white;
+}
+
+/* Subcategory Styling */
+.subcategory-item {
+  background-color: #eee;
+  border-left: 3px solid #0d6efd;
+  padding: 0.5rem 1rem;
+  margin: 0.3rem 0 0.3rem 1rem;
+  border-radius: 5px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.subcategory-actions button {
+  margin-left: 0.5rem;
+  margin-top: 0.3rem;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.subcategory-actions .activate-btn {
+  background-color: #ffc107;
+  color: black;
+}
+
+.subcategory-actions .delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.subcategory-actions .edit-btn {
+  background-color: #0d6efd;
+  color: white;
+}

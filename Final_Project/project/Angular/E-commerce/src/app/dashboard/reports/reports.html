@@ -1,0 +1,86 @@
+<div class="dashboard-reports">
+  <h2>📊 Sales Report</h2>
+
+  <div *ngIf="isLoading">Loading report...</div>
+
+  <div *ngIf="!isLoading && report">
+
+    <!-- Summary Section -->
+    <section class="report-section">
+      <h3>🧾 Summary</h3>
+      <ul>
+        <li>Total Orders: {{ report.total[0]?.numberOfOrders }}</li>
+        <li>Total Sales Amount: {{ report.total[0]?.totalSalesAmount }} EGP</li>
+        <li>Total Quantity Sold: {{ report.total[0]?.totalQuantitySold }}</li>
+      </ul>
+    </section>
+
+    <!-- Top Products Section -->
+    <section class="report-section">
+      <h3>🔥 Top Products</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Revenue</th>
+            <th>Quantity Sold</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of report.topProducts">
+            <td><img [src]="product.imageURL" alt="{{ product.name }}" width="40" height="40"></td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.revenue }} EGP</td>
+            <td>{{ product.quantitySold }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Top Customers Section -->
+    <section class="report-section">
+      <h3>👤 Top Customers</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Total Spent</th>
+            <th>Orders</th>
+            <th>Units</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of report.salesByUsers">
+            <td>{{ user.name }}</td>
+            <td>{{ user.totalSpent }} EGP</td>
+            <td>{{ user.totalPurchases }}</td>
+            <td>{{ user.totalUnits }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Monthly Sales Section -->
+    <section class="report-section">
+      <h3>📆 Monthly Sales</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Month/Year</th>
+            <th>Total Revenue</th>
+            <th>Total Quantity Sold</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let month of report.monthlySales">
+            <td>{{ month._id.month }}/{{ month._id.year }}</td>
+            <td>{{ month.totalRevenue }} EGP</td>
+            <td>{{ month.totalQuantitySold }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </div>
+</div>

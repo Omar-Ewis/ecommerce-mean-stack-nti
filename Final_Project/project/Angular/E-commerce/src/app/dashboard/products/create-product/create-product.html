@@ -1,0 +1,53 @@
+<h2>➕ Create New Product</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" enctype="multipart/form-data" class="product-form">
+  <!-- Name -->
+  <label>
+    Name:
+    <input type="text" formControlName="name" />
+  </label>
+  <div *ngIf="form.controls.name.invalid && form.controls.name.touched" class="error">Name is required.</div>
+
+  <!-- Description -->
+  <label>
+    Description:
+    <textarea formControlName="description" rows="3"></textarea>
+  </label>
+
+  <!-- Price -->
+  <label>
+    Price (EGP):
+    <input type="number" formControlName="price" min="0" />
+  </label>
+
+  <!-- Quantity -->
+  <label>
+    Quantity:
+    <input type="number" formControlName="quantity" min="0" />
+  </label>
+
+  <!-- Category ID -->
+<!-- Category ID -->
+<label>
+  Category:
+  <select formControlName="categoryId">
+    <option value="">-- Select Category --</option>
+    <ng-container *ngFor="let cat of categories">
+      <option [value]="cat._id">{{ cat.name }}</option>
+      <option *ngFor="let child of cat.children" [value]="child._id">
+        &nbsp;&nbsp;↳ {{ child.name }}
+      </option>
+    </ng-container>
+  </select>
+</label>
+
+  <!-- Image Upload -->
+  <label>
+    Image:
+    <input type="file" (change)="onFileChange($event)" accept="image/*" />
+  </label>
+  <div *ngIf="form.controls.image.invalid && form.controls.image.touched" class="error">Image is required.</div>
+
+  <!-- Submit Button -->
+  <button type="submit" [disabled]="form.invalid">Create Product</button>
+</form>

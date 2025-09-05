@@ -1,0 +1,142 @@
+<div class="product-detail-page">
+  @if (isLoading) {
+    <!-- Loading State -->
+    <div class="loading-container">
+      <div class="loading-spinner">
+        <div class="spinner"></div>
+      </div>
+      <p class="loading-text">Loading product details...</p>
+    </div>
+  } @else {
+    @if (product) {
+      <!-- Back Button -->
+      <div class="back-section">
+        <button class="back-btn" routerLink="/products">
+          <span class="back-icon">←</span>
+          <span class="back-text">Back to Products</span>
+        </button>
+      </div>
+
+      <!-- Product Detail Container -->
+      <div class="product-container">
+        <!-- Product Image -->
+        <div class="product-image-section">
+          <div class="product-badges">
+            <span class="badge hot">🔥 Hot Deal</span>
+            <span class="badge new">✨ New</span>
+          </div>
+          <div class="image-wrapper">
+            <img
+              [src]="staticURL + product.imageURL"
+              [alt]="product.name"
+              class="product-image"
+            />
+            <div class="image-overlay">
+              <span class="zoom-text">Click to view full size</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Information -->
+        <div class="product-info-section">
+          <!-- Product Title -->
+          <h1 class="product-title">{{ product.name }}</h1>
+
+          <!-- Rating & Reviews -->
+          <div class="rating-section">
+            <div class="rating-stars">
+              <span class="star filled">⭐</span>
+              <span class="star filled">⭐</span>
+              <span class="star filled">⭐</span>
+              <span class="star filled">⭐</span>
+              <span class="star">⭐</span>
+              <span class="rating-value">4.5</span>
+            </div>
+            <div class="rating-info">
+              <span class="review-count">(127 reviews)</span>
+              <span class="separator">•</span>
+              <span class="sold-count">1,234 sold</span>
+            </div>
+          </div>
+
+          <!-- Stock Status -->
+          <div class="stock-section">
+            <span class="stock-badge">
+              <span class="check-icon">✅</span>
+              In Stock - {{ product.quantity }} available
+            </span>
+          </div>
+
+          <!-- Price Section -->
+          <div class="price-section">
+            <div class="price-main">
+              <span class="current-price">{{ product.price }} EGP</span>
+              <span class="original-price">{{ (product.price * 1.25).toFixed(0) }} EGP</span>
+              <span class="discount-badge">-20%</span>
+            </div>
+            <div class="savings">
+              <span class="savings-icon">💰</span>
+              <span class="savings-text">You save {{ (product.price * 0.25).toFixed(0) }} EGP</span>
+            </div>
+          </div>
+
+          <!-- Product Description -->
+          <div class="description-section">
+            <h3 class="section-title">Product Description</h3>
+            <p class="description-text">{{ product.description }}</p>
+          </div>
+
+          <!-- Size Selection -->
+          <div class="size-section">
+            <h3 class="section-title">Size:</h3>
+            <div class="size-options">
+              <button class="size-btn">S</button>
+              <button class="size-btn active">M</button>
+              <button class="size-btn">L</button>
+              <button class="size-btn">XL</button>
+              <button class="size-btn">XXL</button>
+            </div>
+          </div>
+
+          <!-- Quantity Section -->
+          <div class="quantity-section">
+            <h3 class="section-title">Quantity:</h3>
+            <div class="quantity-controls">
+              <button class="qty-btn minus" (click)="decreaseQty()">-</button>
+              <input type="number" class="qty-input" [(ngModel)]="quantity" readonly>
+              <button class="qty-btn plus" (click)="increaseQty()">+</button>
+            </div>
+            <p class="qty-info">{{ product.quantity }} pieces available</p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="action-section">
+            <button class="add-cart-btn" (click)="addToCart(product._id)">
+              <span class="cart-icon">🛒</span>
+              <span class="btn-text">Add to Cart</span>
+            </button>
+
+            <button class="buy-now-btn">
+              <span class="btn-text">Buy Now</span>
+              <span class="arrow-icon">→</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    } @else {
+      <!-- Product Not Found -->
+      <div class="not-found-section">
+        <div class="not-found-content">
+          <span class="error-icon">❌</span>
+          <h2 class="error-title">Product Not Found</h2>
+          <p class="error-message">The product you're looking for doesn't exist.</p>
+          <button class="back-btn" routerLink="/products">
+            <span class="back-icon">←</span>
+            <span class="back-text">Back to Products</span>
+          </button>
+        </div>
+      </div>
+    }
+  }
+</div>

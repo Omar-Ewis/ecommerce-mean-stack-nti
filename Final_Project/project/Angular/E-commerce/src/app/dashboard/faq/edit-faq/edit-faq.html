@@ -1,0 +1,17 @@
+<div class="edit-faq-page">
+  <h2>📝 Edit FAQ</h2>
+
+  @if (isLoading) {
+    <p>Loading FAQ data...</p>
+  } @else {
+    <form [formGroup]="faqForm" (ngSubmit)="updateFaq()" class="faq-form">
+      <label>Question</label>
+      <input type="text" formControlName="question" />
+
+      <label>Answer</label>
+      <textarea formControlName="answer" rows="5"></textarea>
+
+      <button type="submit" [disabled]="faqForm.invalid">Update FAQ</button>
+    </form>
+  }
+</div>

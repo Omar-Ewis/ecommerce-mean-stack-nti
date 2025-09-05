@@ -1,0 +1,220 @@
+/* Thank You Page Styles */
+
+.thank-you-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #394149 0%, #3a5e8d 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.thank-you-card {
+  background: white;
+  border-radius: 20px;
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(102, 126, 234, 0.1);
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.thank-you-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #8b7cf6, #667eea);
+}
+
+.thank-you-card h1 {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, #8b7cf6, #667eea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 20px 0;
+  position: relative;
+}
+
+.thank-you-card h1::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(135deg, #8b7cf6, #667eea);
+  border-radius: 2px;
+}
+
+.thank-you-card p {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin: 0 0 16px 0;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.thank-you-card p:last-of-type {
+  margin-bottom: 40px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.buttons button {
+  padding: 16px 32px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.buttons button:first-child {
+  background: linear-gradient(135deg, #8b7cf6, #667eea);
+  color: white;
+  box-shadow: 0 8px 25px rgba(139, 124, 246, 0.3);
+}
+
+.buttons button:first-child::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.buttons button:first-child:hover::before {
+  left: 100%;
+}
+
+.buttons button:first-child:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(139, 124, 246, 0.4);
+}
+
+.buttons button:last-child {
+  background: white;
+  color: #667eea;
+  border: 2px solid #e5e7eb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.buttons button:last-child:hover {
+  border-color: #667eea;
+  background: #f8fafc;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+}
+
+/* Success Animation */
+@keyframes successPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.thank-you-card {
+  animation: slideUp 0.8s ease-out, successPulse 2s ease-in-out 1s infinite;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Confetti Effect */
+.thank-you-card::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(139, 124, 246, 0.1) 0%, transparent 20%),
+    radial-gradient(circle at 80% 80%, rgba(102, 126, 234, 0.1) 0%, transparent 20%),
+    radial-gradient(circle at 40% 40%, rgba(139, 124, 246, 0.05) 0%, transparent 30%);
+  pointer-events: none;
+  z-index: -1;
+  border-radius: 20px;
+  animation: confetti 3s ease-in-out infinite;
+}
+
+@keyframes confetti {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .thank-you-card {
+    padding: 40px 30px;
+    margin: 0 16px;
+  }
+
+  .buttons {
+    gap: 14px;
+  }
+
+  .buttons button {
+    padding: 14px 24px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .thank-you-card {
+    padding: 32px 24px;
+  }
+
+  .thank-you-card h1 {
+    font-size: 1.8rem;
+  }
+
+  .thank-you-card p {
+    font-size: 1rem;
+  }
+
+  .buttons button {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+}

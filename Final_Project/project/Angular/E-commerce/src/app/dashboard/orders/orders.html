@@ -1,0 +1,46 @@
+<div class="dashboard-page">
+  <h2>🧾 Orders List</h2>
+  <div *ngIf="isLoading">Loading...</div>
+  @if (!isLoading && orders.length > 0) {
+    <table class="dashboard-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>User</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>country</th>
+          <th>Status</th>
+          <th>Total</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (order of orders; track $index) {
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ order.userId.name || 'N/A' }}</td>
+            <td>{{ order.userId.phone || 'N/A' }}</td>
+            <td>{{ order.userId.email || 'N/A' }}</td>
+            <td>{{ order.shippingAddress.governorate || 'N/A' }}</td>
+            <td>
+            <select [(ngModel)]="order.status" (change)="onStatusChange($event, order._id)">
+                <option *ngFor="let status of statuses" [value]="status">
+                  {{ status }}
+                </option>
+              </select>
+            </td>
+            <td>{{ order.total || order.total || 0 }} EGP</td>
+            <td>{{ order.createdAt | date:'medium' }}</td>
+            <td>
+              <button (click)="softDelete(order._id)" class="action-btn danger">🗑️</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <p>No orders found.</p>
+  }
+</div>

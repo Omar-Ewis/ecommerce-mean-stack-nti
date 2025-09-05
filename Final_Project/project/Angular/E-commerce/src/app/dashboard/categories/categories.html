@@ -1,0 +1,43 @@
+<div class="categories-container">
+  <h2>Categories List</h2>
+
+  <div *ngIf="isLoading">Loading...</div>
+  <div *ngIf="!isLoading && categories.length === 0">No categories found.</div>
+    <button class="category-actions" routerLink="create">
+      Add Category
+    </button>
+  <ul>
+    <li *ngFor="let category of categories" class="category-item">
+      <div class="category-header">
+        <strong>{{ category.name }} </strong>
+        <div class="category-actions">
+          <button class="activate-btn" (click)="toggleFlag(category._id, 'isActive', category.isActive)">
+            {{ !!category.isActive ? 'Deactivate' : 'Activate' }}
+          </button>
+          <button class="delete-btn" (click)="toggleFlag(category._id, 'isDeleted', category.isDeleted)">
+            {{ category.isDeleted ? 'Restore' : 'Delete' }}
+          </button>
+          <button class="edit-btn" [routerLink]="['/dashboard/categories/edit', category.slug]">✏️ Edit</button>
+        </div>
+      </div>
+
+      <!-- Subcategories -->
+      <ul *ngIf="category.children?.length">
+        <li *ngFor="let sub of category.children" class="subcategory-item">
+          <span>└─ {{ sub.name }}</span>
+          <div class="subcategory-actions">
+            <button class="activate-btn" (click)="toggleFlag(sub._id, 'isActive', sub.isActive)">
+              {{ !!sub.isActive ? 'Deactivate' : 'Activate' }}
+            </button>
+            <button class="delete-btn" (click)="toggleFlag(sub._id, 'isDeleted', sub.isDeleted)">
+              {{ sub.isDeleted ? 'Restore' : 'Delete' }}
+            </button>
+            <button class="edit-btn" [routerLink]="['/dashboard/categories/edit', sub.slug]">✏️ Edit</button>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <router-outlet></router-outlet>
+</div>
+

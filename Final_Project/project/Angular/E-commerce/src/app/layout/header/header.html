@@ -1,0 +1,119 @@
+<header class="header">
+  <div class="header-container">
+    <!-- Logo Section -->
+    <div class="logo-section">
+      <div class="logo">
+        <div class="logo-icon">
+          <span class="cart-icon">🛒</span>
+          <div class="logo-glow"></div>
+        </div>
+        <span class="logo-text">OXAANAA</span>
+      </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="nav-menu">
+      <ul class="nav-list">
+        <!-- Home -->
+        <li class="nav-item">
+          <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">
+            <span class="nav-icon">🏠</span>
+            Home
+            <div class="nav-underline"></div>
+          </a>
+        </li>
+
+        <!-- Products -->
+        <li class="nav-item">
+          <a routerLink="/products" routerLinkActive="active" class="nav-link">
+            <span class="nav-icon">📦</span>
+            Products
+            <div class="nav-underline"></div>
+          </a>
+        </li>
+
+        <!-- Fashions Dropdown -->
+        <li class="nav-item dropdown">
+          <div class="nav-link dropdown-toggle">
+            <span class="nav-icon">🏷️</span>
+            Fashions
+            <div class="nav-underline"></div>
+          </div>
+
+          <div class="dropdown-menu">
+            @for (cat of categoryTree; track $index) {
+              <div class="column">
+                <strong>
+                  <!--['/products', product.slug]-->
+                  <!--"['/category',cat.slug]" [queryParams]="{ category: cat.slug }"-->
+                  <a [routerLink]="['/products']" [queryParams]="{ category: cat.slug }">{{ cat.name }}</a>
+                </strong>
+                <ul>
+                  @for (sub of cat.children; track $index) {
+                    <li>
+                      <a [routerLink]="['/products']" [queryParams]="{ category: sub.slug }">- {{ sub.name }}</a>
+                    </li>
+                  }
+                </ul>
+              </div>
+            }
+          </div>
+        </li>
+
+        <!-- About -->
+        <li class="nav-item">
+          <a routerLink="/faqs" routerLinkActive="active" class="nav-link">
+            <span class="nav-icon">ℹ️</span>
+            FAQs
+            <div class="nav-underline"></div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/testimonials" routerLinkActive="active" class="nav-link">
+            <span class="nav-icon">💬</span>
+            Testimonials
+            <div class="nav-underline"></div>
+          </a>
+        </li>
+        <li class="nav-item">
+            <a routerLink="/my-orders" routerLinkActive="active" class="nav-link">
+              <span class="nav-icon">🛒</span>
+              My Orders
+              <div class="nav-underline"></div>
+            </a>
+        </li>
+        <!-- Login / Logout -->
+        @if (!loggedIn) {
+          <li class="nav-item">
+            <a routerLink="/login" routerLinkActive="active" class="nav-link">
+              <span class="nav-icon">🔐</span>
+              Login
+              <div class="nav-underline"></div>
+            </a>
+          </li>
+        } @else {
+          <li class="nav-item">
+            <a class="nav-link" (click)="logOut()">
+              <span class="nav-icon">🚪</span>
+              Logout
+              <div class="nav-underline"></div>
+            </a>
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <button class="search-btn" title="Search">
+        <span class="search-icon">🔍</span>
+        <div class="btn-ripple"></div>
+      </button>
+
+      <button class="cart-btn" title="Shopping Cart" routerLink="/cart">
+        <span class="cart-icon">🛒</span>
+        <div class="btn-ripple"></div>
+      </button>
+    </div>
+  </div>
+</header>

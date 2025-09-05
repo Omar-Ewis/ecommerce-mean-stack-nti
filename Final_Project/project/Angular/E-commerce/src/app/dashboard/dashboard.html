@@ -1,0 +1,64 @@
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo-section">
+      <div class="logo">
+        <i class="fas fa-store"></i>
+        Admin Panel
+      </div>
+      <div class="logo-subtitle">Management System</div>
+    </div>
+
+    <nav>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a routerLink="products" routerLinkActive="active" class="nav-link">
+            <i class="fas fa-box"></i>
+            Products
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="categories" routerLinkActive="active" class="nav-link">
+            <i class="fas fa-tags"></i>
+            Categories
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="orders" routerLinkActive="active" class="nav-link">
+            <i class="fas fa-shopping-cart"></i>
+            Orders
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="reports" routerLinkActive="active" class="nav-link">
+            <i class="fas fa-chart-bar"></i>
+            Reports
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="faq" routerLinkActive="active" class="nav-link">
+            <i class="fas fa-question-circle"></i>
+            FAQs
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="testimonials" routerLinkActive="active" class="nav-link">
+            <i class="fas fa-comments"></i>
+            Testimonials
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="settings" routerLinkActive="active" class="nav-link">
+            <i class="fas fa-cog"></i>
+            Settings
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="dashboard-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

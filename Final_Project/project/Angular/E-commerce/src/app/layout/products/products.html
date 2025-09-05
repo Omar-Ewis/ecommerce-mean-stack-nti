@@ -1,0 +1,166 @@
+<div class="products-page">
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Our Products</h1>
+      <p class="page-subtitle">Discover amazing products at great prices</p>
+      <div class="header-decoration">
+        <div class="decoration-line"></div>
+        <span class="decoration-icon">✨</span>
+        <div class="decoration-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="products-container">
+    @if (isLoading) {
+      <div class="loading-section">
+        <div class="loading-spinner">
+          <div class="spinner-ring"></div>
+          <div class="spinner-ring"></div>
+          <div class="spinner-ring"></div>
+        </div>
+        <h3 class="loading-title">Loading Products...</h3>
+        <p class="loading-subtitle">Please wait while we fetch the latest products for you</p>
+
+        <!-- Loading Skeleton Cards -->
+        <div class="skeleton-grid">
+          @for (item of [1,2,3,4,5,6,7,8]; track $index) {
+            <div class="skeleton-card">
+              <div class="skeleton-image"></div>
+              <div class="skeleton-content">
+                <div class="skeleton-title"></div>
+                <div class="skeleton-price"></div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    } @else {
+      @if (products.length === 0) {
+        <div class="empty-state">
+          <div class="empty-icon">
+            <span class="icon-large">📦</span>
+            <div class="empty-animation"></div>
+          </div>
+          <h3 class="empty-title">No Products Found</h3>
+          <p class="empty-subtitle">We couldn't find any products at the moment. Please check back later!</p>
+          <div class="empty-actions">
+            <button class="refresh-btn" (click)="ngOnInit()">
+              <span class="btn-icon">🔄</span>
+              <span>Try Again</span>
+            </button>
+            <button class="browse-btn" routerLink="/categories">
+              <span class="btn-icon">🏷️</span>
+              <span>Browse Categories</span>
+            </button>
+          </div>
+        </div>
+      } @else {
+        <!-- Products Stats -->
+        <div class="products-stats">
+          <div class="stat-item">
+            <span class="stat-number">{{ products.length }}</span>
+            <span class="stat-label">Products Available</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">⭐ 4.8</span>
+            <span class="stat-label">Average Rating</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">🚚</span>
+            <span class="stat-label">Free Shipping</span>
+          </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="product-grid">
+          @for (product of products; track $index) {
+            <div class="product-card" [style.animation-delay]="$index * 0.1 + 's'">
+              <!-- Product Badge -->
+              <div class="product-badge">
+                @if ($index < 3) {
+                  <span class="badge hot">🔥 Hot</span>
+                } @else if ($index % 4 === 0) {
+                  <span class="badge new">✨ New</span>
+                } @else if ($index % 3 === 0) {
+                  <span class="badge sale">💰 Sale</span>
+                }
+              </div>
+
+              <!-- Product Image -->
+              <div class="product-image">
+                <img
+                  [src]="staticURL + '/' + product.imageURL"
+                  [alt]="product.name"
+                  loading="lazy"
+                  (error)="$event.target.src='assets/images/placeholder.jpg'"
+                />
+                <div class="image-overlay">
+                  <div class="overlay-actions">
+                    <button class="action-btn" title="Quick View">
+                      <span class="btn-icon">👁️</span>
+                    </button>
+                    <button class="action-btn" title="Add to Wishlist">
+                      <span class="btn-icon">❤️</span>
+                    </button>
+                    <button class="action-btn" title="Add to Compare">
+                      <span class="btn-icon">⚖️</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product Info -->
+              <div class="product-info">
+                <h3 class="product-name">{{ product.name }}</h3>
+                  <p class="product-description">
+                    {{ product.description}}
+                  </p>
+
+                <!-- Product Rating -->
+                <div class="product-rating">
+                  <div class="stars">
+                    @for (star of [1,2,3,4,5]; track star) {
+                      <span class="star" [class.filled]="star <= 4">⭐</span>
+                    }
+                  </div>
+                  <span class="rating-count">({{ ($index + 1) * 12 }} reviews)</span>
+                </div>
+
+                <!-- Product Price -->
+                <div class="product-price">
+                  <span class="current-price">{{ product.price }} EGP</span>
+                </div>
+
+                <!-- Product Actions -->
+                <div class="product-actions">
+                  <button class="add-to-cart-btn"  (click)="addToCart(product._id)" >
+                    <span class="btn-icon">🛒</span>
+                    <span class="btn-text">Add to Cart</span>
+                    <div class="btn-shine"></div>
+                  </button>
+                  <button class="buy-now-btn" [routerLink]="['/products', product.slug]">
+                    <span class="btn-text">Details</span>
+                    <span class="btn-arrow">→</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+
+        <div class="load-more-section">
+            <div class="pagination">
+              <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage <= 1">⏮ Previous</button>
+              <span>Page {{ currentPage }}</span>
+              <button (click)="goToPage(currentPage + 1)">Next ⏭</button>
+            </div>
+        </div>
+      }
+    }
+  </div>
+</div>

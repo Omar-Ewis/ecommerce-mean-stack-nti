@@ -1,0 +1,139 @@
+/* General page styling */
+.products-page {
+  padding: 32px;
+  background-color: #f9fafb;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Title */
+.products-page h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Create Product button */
+.btn-create {
+  display: inline-block;
+  background-color: #28a745;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-create:hover {
+  background-color: #218838;
+}
+
+/* Table styling */
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.product-table th,
+.product-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.product-table th {
+  background-color: #f1f3f5;
+  color: #333;
+  font-weight: 600;
+}
+
+.product-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.product-table .thumb {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+/* Action buttons */
+.product-table button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.product-table button:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+.product-table button:nth-child(1) {
+  background-color: #ffc107; /* activate/deactivate */
+  color: #212529;
+}
+
+.product-table button:nth-child(2) {
+  background-color: #dc3545; /* delete */
+  color: white;
+}
+
+.product-table button:nth-child(3) {
+  background-color: #007bff; /* edit */
+  color: white;
+}
+
+/* Loading */
+.loading {
+  font-weight: 500;
+  margin: 12px 0;
+  color: #555;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  background-color: #f0f4f8;
+  border: 1px solid #d0d7de;
+  font-weight: 500;
+  color: #333;
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.pagination button:hover {
+  background-color: #e0e7ee;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transform: translateY(-1px);
+}
+
+.pagination button.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+  transform: scale(1.05);
+}

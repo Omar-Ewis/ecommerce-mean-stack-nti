@@ -1,0 +1,13 @@
+<div class="add-faq-page">
+  <h2>➕ Add New FAQ</h2>
+
+  <form [formGroup]="faqForm" (ngSubmit)="submitFaq()" class="faq-form">
+    <label>Question</label>
+    <input type="text" formControlName="question" placeholder="Enter your question" />
+
+    <label>Answer</label>
+    <textarea formControlName="answer" rows="5" placeholder="Enter the answer"></textarea>
+
+    <button type="submit" [disabled]="faqForm.invalid">Add FAQ</button>
+  </form>
+</div>

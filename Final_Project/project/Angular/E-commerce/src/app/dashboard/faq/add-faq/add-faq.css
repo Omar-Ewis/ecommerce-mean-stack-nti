@@ -1,0 +1,67 @@
+.add-faq-page {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #0a0a0f;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.15);
+  color: white;
+}
+
+.add-faq-page h2 {
+  color: #00d4ff;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.faq-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.faq-form label {
+  font-weight: bold;
+  color: #b8c5d6;
+  margin-bottom: 0.25rem;
+}
+
+.faq-form input,
+.faq-form textarea {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  background-color: #1a1a2e;
+  color: #fff;
+  border: 1px solid #2d3748;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.faq-form input:focus,
+.faq-form textarea:focus {
+  border-color: #00d4ff;
+}
+
+.faq-form button {
+  padding: 0.75rem 1.5rem;
+  background-color: #00d4ff;
+  color: #0a0a0f;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background-color 0.3s;
+}
+
+.faq-form button:hover {
+  background-color: #00b5e0;
+}
+
+.faq-form button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}

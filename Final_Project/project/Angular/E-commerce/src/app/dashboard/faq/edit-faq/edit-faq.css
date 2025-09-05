@@ -1,0 +1,75 @@
+/* Wrapper */
+.edit-faq-page {
+  padding: 32px;
+  background-color: #f9fafb;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Title */
+.edit-faq-page h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Loading text */
+.edit-faq-page p {
+  font-weight: 500;
+  color: #555;
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* Form */
+.faq-form {
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  max-width: 600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-form label {
+  font-weight: 600;
+  color: #444;
+}
+
+.faq-form input,
+.faq-form textarea {
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  transition: border 0.2s ease-in-out;
+}
+
+.faq-form input:focus,
+.faq-form textarea:focus {
+  outline: none;
+  border-color: #17a2b8;
+  box-shadow: 0 0 0 2px rgba(23,162,184,0.2);
+}
+
+.faq-form button {
+  background-color: #17a2b8; /* teal-ish update button */
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.faq-form button:hover:not(:disabled) {
+  background-color: #138496;
+}
+
+.faq-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

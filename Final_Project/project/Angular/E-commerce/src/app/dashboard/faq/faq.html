@@ -1,0 +1,40 @@
+<div class="faq-dashboard">
+  <h2>📋 Manage FAQs</h2>
+  <a routerLink="create">➕ Add New FAQ</a>
+  @if (isLoading) {
+    <p>Loading FAQs...</p>
+  } @else {
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Question</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (faq of faqs; let i = $index; track faq._id) {
+          <tr>
+            <td>{{ i + 1 }}</td>
+            <td>{{ faq.question }}</td>
+            <td>
+              <span [class.inactive]="!faq.isActive">Active: {{ faq.isActive }}</span> |
+              <span [class.deleted]="faq.isDeleted">Deleted: {{ faq.isDeleted }}</span>
+            </td>
+            <td>
+              <button (click)="toggleFlag(faq._id, 'isActive')">
+                {{ faq.isActive ? 'Deactivate' : 'Activate' }}
+              </button>
+              <button (click)="toggleFlag(faq._id, 'isDeleted')">
+                {{ faq.isDeleted ? 'Restore' : 'Delete' }}
+              </button>
+              <a [routerLink]="['/dashboard/faq/edit', faq._id]">✏️ Edit</a>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
+<router-outlet></router-outlet>

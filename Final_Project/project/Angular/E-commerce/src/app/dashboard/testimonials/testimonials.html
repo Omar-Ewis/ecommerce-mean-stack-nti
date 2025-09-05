@@ -1,0 +1,47 @@
+<div class="dashboard-testimonials">
+  <h2 class="title">🗣️ Customer Testimonials</h2>
+
+  @if (isLoading) {
+    <p class="loading-text">Loading testimonials...</p>
+  } @else {
+    <div class="table-wrapper">
+      <table class="testimonials-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Message</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (t of testimonials; let i = $index; track t._id) {
+            <tr>
+              <td>{{ i + 1 }}</td>
+              <td>{{ t.name }}</td>
+              <td>"{{ t.message }}"</td>
+              <td>
+                <span [class.status-active]="t.isActive" [class.status-inactive]="!t.isActive">
+                  {{ t.isActive ? '✅ Active' : '⛔ Inactive' }}
+                </span>
+                <br />
+                <span [class.status-deleted]="t.isDeleted">
+                  {{ t.isDeleted ? '🗑️ Deleted' : '📦 Available' }}
+                </span>
+              </td>
+              <td>
+                <button class="btn toggle" (click)="toggleFlag(t._id, 'isActive')">
+                  {{ t.isActive ? 'Deactivate' : 'Activate' }}
+                </button>
+                <button class="btn danger" (click)="toggleFlag(t._id, 'isDeleted')">
+                  {{ t.isDeleted ? 'Restore' : 'Delete' }}
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

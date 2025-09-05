@@ -1,0 +1,52 @@
+<div class="products-page">
+  <h2>📦 Product Management</h2>
+
+  <div *ngIf="isLoading" class="loading">Loading...</div>
+  <a routerLink="create" class="btn-create">+ Create Product</a>
+  <table *ngIf="!isLoading" class="product-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Category</th>
+        <th>Active</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td><img [src]="staticURL + '/' + product.imageURL" class="thumb" /></td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }} EGP</td>
+        <td>{{ product.quantity }}</td>
+        <td>{{ product.categoryId.name }}</td>
+        <td>{{ product.isActive ? '✅' : '❌' }}</td>
+        <td>
+          <button (click)="toggleActive(product)">
+            {{ product.isActive ? 'Deactivate' : 'Activate' }}
+          </button>
+          <button (click)="deleteProduct(product)">
+            Delete
+          </button>
+          <button [routerLink]="['/dashboard/products/edit', product.slug]">
+            Edit
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pagination">
+  <button
+    *ngFor="let page of [].constructor(totalPages); let i = index"
+    (click)="getAllProducts(i + 1)"
+    [class.active]="currentPage === i + 1">
+    {{ i + 1 }}
+  </button>
+</div>
+    <!-- Main Content -->
+    <router-outlet></router-outlet>
+</div>

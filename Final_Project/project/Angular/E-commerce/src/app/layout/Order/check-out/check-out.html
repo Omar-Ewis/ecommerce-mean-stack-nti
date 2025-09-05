@@ -1,0 +1,88 @@
+<!-- Page Header -->
+<div class="checkout-header">
+  <h1 class="page-title">Complete Your Order</h1>
+  <p class="page-subtitle">We're almost there! Just need your shipping details</p>
+</div>
+
+<div class="checkout-page">
+  <div class="checkout-container">
+
+    <!-- Checkout Form -->
+    <form [formGroup]="addressForm" (ngSubmit)="confirmOrder()" class="checkout-form">
+
+      <div class="form-header">
+        <span>🏠</span>
+        <h2 class="form-title">Shipping Information</h2>
+      </div>
+
+      <div class="form-grid">
+        <!-- Governorate -->
+        <div class="form-group">
+          <label for="governorate">Governorate</label>
+          <input type="text" id="governorate" formControlName="governorate" placeholder="e.g. Cairo, Alexandria" required />
+        </div>
+
+        <!-- City -->
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" id="city" formControlName="city" placeholder="e.g. Nasr City, Downtown" required />
+        </div>
+
+        <!-- Street -->
+        <div class="form-group full-width">
+          <label for="street">Street Address</label>
+          <input type="text" id="street" formControlName="street" placeholder="e.g. 123 Tahrir Street" required />
+        </div>
+
+        <!-- Building -->
+        <div class="form-group">
+          <label for="building">Building Number</label>
+          <input type="text" id="building" formControlName="building" placeholder="e.g. Building 15" />
+        </div>
+
+        <!-- Floor -->
+        <div class="form-group">
+          <label for="floor">Floor</label>
+          <input type="text" id="floor" formControlName="floor" placeholder="e.g. 3rd Floor" />
+        </div>
+
+        <!-- Apartment -->
+        <div class="form-group">
+          <label for="apartment">Apartment</label>
+          <input type="text" id="apartment" formControlName="apartment" placeholder="e.g. Apt 12" />
+        </div>
+
+        <!-- Landmark -->
+        <div class="form-group">
+          <label for="landmark">Landmark</label>
+          <input type="text" id="landmark" formControlName="landmark" placeholder="e.g. Near City Stars Mall" />
+        </div>
+
+        <!-- Zip -->
+        <div class="form-group">
+          <label for="zip">Zip Code</label>
+          <input type="text" id="zip" formControlName="zip" placeholder="e.g. 11511" />
+        </div>
+
+        <!-- Country -->
+        <div class="form-group full-width">
+          <label for="country">Country</label>
+          <input type="text" id="country" formControlName="country" value="Egypt" readonly />
+        </div>
+      </div>
+
+      <!-- Security Info -->
+      <div class="security-info">
+        Your information is secure and encrypted
+      </div>
+
+      <!-- Submit Button -->
+      <div class="form-actions">
+        <button type="submit" [disabled]="addressForm.invalid || isSubmitting">
+          {{ isSubmitting ? 'Placing Order...' : 'Confirm Order' }}
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>

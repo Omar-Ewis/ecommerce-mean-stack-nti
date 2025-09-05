@@ -1,0 +1,76 @@
+.dashboard-testimonials {
+  padding: 24px;
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #00000033;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: #38bdf8;
+}
+
+.loading-text {
+  color: #facc15;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.testimonials-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1e293b;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.testimonials-table th,
+.testimonials-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #334155;
+  text-align: left;
+}
+
+.testimonials-table th {
+  background: #0f172a;
+  color: #7dd3fc;
+}
+
+.testimonials-table tr:hover {
+  background-color: #334155;
+}
+
+.status-active {
+  color: #22c55e;
+}
+
+.status-inactive {
+  color: #f87171;
+}
+
+.status-deleted {
+  color: #f97316;
+}
+
+.btn {
+  padding: 6px 12px;
+  margin-right: 4px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn.toggle {
+  background-color: #2563eb;
+  color: white;
+}
+
+.btn.danger {
+  background-color: #dc2626;
+  color: white;
+}

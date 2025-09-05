@@ -1,0 +1,454 @@
+{
+	"info": {
+		"_postman_id": "e-commerce-api-collection",
+		"name": "E-Commerce API",
+		"description": "Complete API collection for E-Commerce backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"test@example.com\",\n  \"phone\": \"+201234567890\",\n  \"password\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/register",
+							"host": ["{{base_url}}"],
+							"path": ["api", "auth", "register"]
+						}
+					}
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": ["{{base_url}}"],
+							"path": ["api", "auth", "login"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/category",
+							"host": ["{{base_url}}"],
+							"path": ["api", "category"]
+						}
+					}
+				},
+				{
+					"name": "Get Category Tree",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/category/tree",
+							"host": ["{{base_url}}"],
+							"path": ["api", "category", "tree"]
+						}
+					}
+				},
+				{
+					"name": "Create Category (Admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Men's Clothing\",\n  \"audience\": \"men\",\n  \"type\": \"casual\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/category",
+							"host": ["{{base_url}}"],
+							"path": ["api", "category"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/product?page=1&limit=10",
+							"host": ["{{base_url}}"],
+							"path": ["api", "product"],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Products by Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/product/category/{{category_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "product", "category", "{{category_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Create Product (Admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Classic T-Shirt\",\n  \"description\": \"A comfortable and stylish t-shirt\",\n  \"categoryId\": \"{{category_id}}\",\n  \"audience\": \"men\",\n  \"basePrice\": 199.99,\n  \"variants\": [\n    {\n      \"size\": \"M\",\n      \"color\": \"White\",\n      \"sku\": \"TS-M-WHITE-001\",\n      \"stock\": 50,\n      \"price\": 199.99\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/product",
+							"host": ["{{base_url}}"],
+							"path": ["api", "product"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Get Cart",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{user_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/cart",
+							"host": ["{{base_url}}"],
+							"path": ["api", "cart"]
+						}
+					}
+				},
+				{
+					"name": "Add to Cart",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{user_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": \"{{product_id}}\",\n  \"variantId\": \"TS-M-WHITE-001\",\n  \"quantity\": 2\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/cart/add",
+							"host": ["{{base_url}}"],
+							"path": ["api", "cart", "add"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{user_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"shippingAddress\": {\n    \"label\": \"Home\",\n    \"governorate\": \"Cairo\",\n    \"city\": \"Cairo\",\n    \"street\": \"Main Street\",\n    \"building\": \"Building 1\",\n    \"apartment\": \"Apt 101\"\n  },\n  \"notes\": \"Please deliver in the morning\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/order",
+							"host": ["{{base_url}}"],
+							"path": ["api", "order"]
+						}
+					}
+				},
+				{
+					"name": "Get User Orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{user_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/order/user",
+							"host": ["{{base_url}}"],
+							"path": ["api", "order", "user"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Testimonials",
+			"item": [
+				{
+					"name": "Create Testimonial",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{user_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": \"{{product_id}}\",\n  \"title\": \"Great Product!\",\n  \"message\": \"This is an excellent product. Highly recommended!\",\n  \"rating\": 5\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/testimonial",
+							"host": ["{{base_url}}"],
+							"path": ["api", "testimonial"]
+						}
+					}
+				},
+				{
+					"name": "Get Product Testimonials",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/testimonial/product/{{product_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "testimonial", "product", "{{product_id}}"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "FAQ",
+			"item": [
+				{
+					"name": "Get Active FAQs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/faq/active",
+							"host": ["{{base_url}}"],
+							"path": ["api", "faq", "active"]
+						}
+					}
+				},
+				{
+					"name": "Create FAQ (Admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"question\": \"How do I track my order?\",\n  \"answer\": \"You can track your order by logging into your account and visiting the orders section.\",\n  \"category\": \"shipping\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/faq",
+							"host": ["{{base_url}}"],
+							"path": ["api", "faq"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Contact",
+			"item": [
+				{
+					"name": "Send Contact Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"phone\": \"+201234567890\",\n  \"category\": \"question\",\n  \"subject\": \"Product Inquiry\",\n  \"message\": \"I would like to know more about your products.\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/contact",
+							"host": ["{{base_url}}"],
+							"path": ["api", "contact"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Wishlist",
+			"item": [
+				{
+					"name": "Get Wishlist",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{user_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/wishlist",
+							"host": ["{{base_url}}"],
+							"path": ["api", "wishlist"]
+						}
+					}
+				},
+				{
+					"name": "Add to Wishlist",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{user_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": \"{{product_id}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/wishlist/add",
+							"host": ["{{base_url}}"],
+							"path": ["api", "wishlist", "add"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "user_token",
+			"value": "your_user_jwt_token_here",
+			"type": "string"
+		},
+		{
+			"key": "admin_token",
+			"value": "your_admin_jwt_token_here",
+			"type": "string"
+		},
+		{
+			"key": "category_id",
+			"value": "category_id_from_create_response",
+			"type": "string"
+		},
+		{
+			"key": "product_id",
+			"value": "product_id_from_create_response",
+			"type": "string"
+		}
+	]
+}
+
